@@ -7,6 +7,7 @@
 
 import Foundation
 import Observation
+import GroceryAppShareDTO
 
 @Observable
 final class GroceryViewModel {

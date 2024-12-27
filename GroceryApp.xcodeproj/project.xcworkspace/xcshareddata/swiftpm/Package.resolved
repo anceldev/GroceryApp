@@ -1,0 +1,15 @@
+{
+  "originHash" : "ff0537af90f603870faf29d4f95a75a7ae01f075988cd101f5369ed16d321c53",
+  "pins" : [
+    {
+      "identity" : "groceryappsharedto",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/anceldev/GroceryAppShareDTO.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "75b12f20a835508937450d8312d3cc795c31bd0b"
+      }
+    }
+  ],
+  "version" : 3
+}
