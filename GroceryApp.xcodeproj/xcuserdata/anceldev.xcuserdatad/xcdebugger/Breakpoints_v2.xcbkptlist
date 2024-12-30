@@ -3,4 +3,80 @@
    uuid = "75A9276E-3188-4D5B-899F-87F735E40FBC"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3D6B4DF1-A3FD-4866-8989-E7CFDFDC6155"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GroceryApp/Screens/AddGroceryCategoryScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "saveGroceryCategory()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3D6B4DF1-A3FD-4866-8989-E7CFDFDC6155 - 121f9e82191a5294"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for GroceryApp.AddGroceryCategoryScreen.saveGroceryCategory() async -&gt; ()"
+                  moduleName = "GroceryApp.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anceldev/iOSProjects/grocery-azamsharp-course/GroceryApp/GroceryApp/Screens/AddGroceryCategoryScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49">
+               </Location>
+               <Location
+                  uuid = "3D6B4DF1-A3FD-4866-8989-E7CFDFDC6155 - 57ece372e3e6ca48"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for GroceryApp.AddGroceryCategoryScreen.saveGroceryCategory() async -&gt; ()"
+                  moduleName = "GroceryApp.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anceldev/iOSProjects/grocery-azamsharp-course/GroceryApp/GroceryApp/Screens/AddGroceryCategoryScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49">
+               </Location>
+               <Location
+                  uuid = "3D6B4DF1-A3FD-4866-8989-E7CFDFDC6155 - cbd2e61a4fa15e96"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for GroceryApp.AddGroceryCategoryScreen.saveGroceryCategory() async -&gt; ()"
+                  moduleName = "GroceryApp.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anceldev/iOSProjects/grocery-azamsharp-course/GroceryApp/GroceryApp/Screens/AddGroceryCategoryScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49">
+               </Location>
+               <Location
+                  uuid = "3D6B4DF1-A3FD-4866-8989-E7CFDFDC6155 - 27cbb5ee6494d897"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for GroceryApp.AddGroceryCategoryScreen.saveGroceryCategory() async -&gt; ()"
+                  moduleName = "GroceryApp.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anceldev/iOSProjects/grocery-azamsharp-course/GroceryApp/GroceryApp/Screens/AddGroceryCategoryScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

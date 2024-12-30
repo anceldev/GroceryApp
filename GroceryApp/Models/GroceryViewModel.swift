@@ -12,6 +12,8 @@ import GroceryAppShareDTO
 @Observable
 final class GroceryViewModel {
     
+    var groceryCategories = [GroceryCategoryResponseDTO]()
+    
     let httpClient = HTTPClient()
     
     func register(username: String, password: String) async throws -> RegisterResponseDTO {
@@ -47,5 +49,29 @@ final class GroceryViewModel {
             defaults.set(loginResponseDTO.userId!.uuidString, forKey: "userId")
         }
         return loginResponseDTO
+    }
+    
+    func populateGRoceryCategories() async throws {
+        guard let userId = UserDefaults.standard.userId else {
+            return
+        }
+        let resource = Resource(
+            url: Constants.Urls.groceryCategoriesBy(userId: userId),
+            modelType: [GroceryCategoryResponseDTO].self
+        )
+        self.groceryCategories = try await httpClient.load(resource)
+    }
+    
+    func saveGroceryCategoryDTO(_ groceryCategoryRequestDTO: GroceryCategoryRequestDTO) async throws {
+        guard let userId = UserDefaults.standard.userId else {
+            return
+        }
+        let resource = try Resource(
+            url: Constants.Urls.saveGroceryCategoryBy(userId: userId),
+            method: .post(JSONEncoder().encode(groceryCategoryRequestDTO)),
+            modelType: GroceryCategoryResponseDTO.self
+        )
+        let groceryCategory = try await httpClient.load(resource)
+        groceryCategories.append(groceryCategory)
     }
 }

@@ -46,7 +46,7 @@ enum HTTPMethod {
 
 struct Resource<T:Codable> {
     let url: URL
-    let method: HTTPMethod // = .get([])
+    var method: HTTPMethod = .get([])
     var modelType: T.Type
 }
 

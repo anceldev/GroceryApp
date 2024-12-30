@@ -56,6 +56,9 @@ struct LoginScreen: View {
 }
 
 #Preview {
-    LoginScreen()
-        .environment(GroceryViewModel())
+    NavigationStack {
+        LoginScreen()
+            .environment(GroceryViewModel())
+            .environment(AppState())
+    }
 }
