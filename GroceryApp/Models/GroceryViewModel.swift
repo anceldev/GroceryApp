@@ -13,6 +13,8 @@ import GroceryAppShareDTO
 final class GroceryViewModel {
     
     var groceryCategories = [GroceryCategoryResponseDTO]()
+    var groceryCategory: GroceryCategoryResponseDTO?
+    var groceryItems = [GroceryItemResponseDTO]()
     
     let httpClient = HTTPClient()
     
@@ -51,6 +53,21 @@ final class GroceryViewModel {
         return loginResponseDTO
     }
     
+    func populateGroceryItemsBy(groceryCategoryId: UUID) async throws {
+        guard let userId = UserDefaults.standard.userId else {
+            return
+        }
+        let resource = Resource(
+            url: Constants.Urls.groceryItemsBy(
+                userId: userId,
+                groceryCategoryId: groceryCategoryId
+            ),
+            modelType: [GroceryItemResponseDTO].self
+        )
+        
+        groceryItems = try await httpClient.load(resource)
+    }
+    
     func populateGRoceryCategories() async throws {
         guard let userId = UserDefaults.standard.userId else {
             return
@@ -60,6 +77,24 @@ final class GroceryViewModel {
             modelType: [GroceryCategoryResponseDTO].self
         )
         self.groceryCategories = try await httpClient.load(resource)
+    }
+    
+    func saveGroceryItem(_ groceryItemRequestDTO: GroceryItemRequestDTO, groceryCategoryId: UUID) async throws {
+        guard let userId = UserDefaults.standard.userId else {
+            return
+        }
+        
+        let resource = try Resource(
+            url: Constants.Urls.saveGroceryItem(
+                userId: userId,
+                groceryCategoryId: groceryCategoryId
+            ),
+            method: .post(JSONEncoder().encode(groceryItemRequestDTO)),
+            modelType: GroceryItemResponseDTO.self
+        )
+        
+        let newGroceryItem = try await httpClient.load(resource)
+        groceryItems.append(newGroceryItem)
     }
     
     func saveGroceryCategoryDTO(_ groceryCategoryRequestDTO: GroceryCategoryRequestDTO) async throws {
@@ -73,5 +108,20 @@ final class GroceryViewModel {
         )
         let groceryCategory = try await httpClient.load(resource)
         groceryCategories.append(groceryCategory)
+    }
+    
+    func deleteGroceryCategory(groceryCategoryId: UUID) async throws {
+        guard let userId = UserDefaults.standard.userId else {
+            return
+        }
+        
+        let resource = Resource(
+            url: Constants.Urls.deleteGroceryCategories(userId: userId, groceryCategoryId: groceryCategoryId),
+            method: .delete,
+            modelType: GroceryCategoryResponseDTO.self
+        )
+        
+        let deletedGroceryCategory = try await httpClient.load(resource)
+        groceryCategories = groceryCategories.filter { $0.id != deletedGroceryCategory.id }
     }
 }

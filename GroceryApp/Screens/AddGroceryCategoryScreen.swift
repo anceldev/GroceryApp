@@ -47,7 +47,7 @@ struct AddGroceryCategoryScreen: View {
         )
         do {
             try await groceryVM.saveGroceryCategoryDTO(groceryCategoryRequestDTO)
-            
+            dismiss()
         } catch {
             print(error.localizedDescription)
         }

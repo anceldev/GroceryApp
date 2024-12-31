@@ -18,9 +18,14 @@ struct GroceryAppApp: App {
                 RegistrationScreen()
                     .navigationDestination(for: Route.self) { route in
                         switch route {
-                        case .register: RegistrationScreen()
-                        case .login: LoginScreen()
-                        case .groceryCategoryList: Text("Grocery List View")
+                        case .register:
+                            RegistrationScreen()
+                        case .login:
+                            LoginScreen()
+                        case .groceryCategoryList:
+                            Text("Grocery List View")
+                        case .groceryCategoryDetail(let groceryCategory):
+                            GroceryDetailScreen(groceryCategory: groceryCategory)
                         }
                     }
             }

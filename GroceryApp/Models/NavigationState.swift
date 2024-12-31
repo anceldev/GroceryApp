@@ -7,11 +7,15 @@
 
 import Foundation
 import Observation
+import GroceryAppShareDTO
 
 enum Route: Hashable {
     case login
     case register
     case groceryCategoryList
+    case groceryCategoryDetail(GroceryCategoryResponseDTO)
+    
+    
 }
 
 @Observable
