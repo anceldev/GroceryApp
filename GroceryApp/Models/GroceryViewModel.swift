@@ -9,6 +9,8 @@ import Foundation
 import Observation
 import GroceryAppShareDTO
 
+
+
 @Observable
 final class GroceryViewModel {
     
@@ -51,6 +53,12 @@ final class GroceryViewModel {
             defaults.set(loginResponseDTO.userId!.uuidString, forKey: "userId")
         }
         return loginResponseDTO
+    }
+    
+    func logout() {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "userId")
+        defaults.removeObject(forKey: "authToken")
     }
     
     func populateGroceryItemsBy(groceryCategoryId: UUID) async throws {
@@ -108,6 +116,26 @@ final class GroceryViewModel {
         )
         let groceryCategory = try await httpClient.load(resource)
         groceryCategories.append(groceryCategory)
+    }
+    
+    func deleteGroceryItem(groceryCategoryId: UUID, groceryItemId: UUID) async throws {
+        guard let userId = UserDefaults.standard.userId else {
+            return
+        }
+        
+        let resource = Resource(
+            url: Constants.Urls.deleteGroceryItem(
+                userId: userId,
+                groceryCategoryId: groceryCategoryId,
+                groceryItemId: groceryItemId
+            ),
+            method: .delete,
+            modelType: GroceryItemResponseDTO.self
+        )
+        
+        let deletedGroceryItem = try await httpClient.load(resource)
+        
+        groceryItems = groceryItems.filter({ $0.id != deletedGroceryItem.id })
     }
     
     func deleteGroceryCategory(groceryCategoryId: UUID) async throws {

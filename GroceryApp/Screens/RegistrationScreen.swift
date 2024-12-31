@@ -78,7 +78,7 @@ struct RegistrationScreenContainer: View {
                     case .login:
                         LoginScreen()
                     case .groceryCategoryList:
-                        Text("Grocery Category List")
+                        GroceryCategoryListScreen()
                     case .groceryCategoryDetail(let groceryCategory):
                         GroceryDetailScreen(groceryCategory: groceryCategory)
                     }

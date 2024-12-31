@@ -22,22 +22,35 @@ struct LoginScreen: View {
     }
     
     var body: some View {
+        @Bindable var appState = appState
         Form {
             TextField("Username", text: $username)
                 .textInputAutocapitalization(.never)
             SecureField("Password", text: $password)
-            Button("Login") {
-                Task {
-                    await login()
+            HStack {
+                Button("Login") {
+                    Task {
+                        await login()
+                    }
                 }
+                .buttonStyle(.borderedProminent)
+                .tint(.green)
+                .disabled(!isFormValid)
+                Spacer(minLength: 0)
+                Button("Register") {
+                    appState.routes.append(.register)
+                }
+                .buttonStyle(.borderless)
             }
-            .buttonStyle(.borderedProminent)
-            .tint(.green)
-            .disabled(!isFormValid)
             Text(errorMessage)
                 .foregroundStyle(.red)
         }
         .navigationTitle("Login")
+        .navigationBarBackButtonHidden()
+        .sheet(item: $appState.errorWrapper) { errorWrapper in
+            ErrorView(errorWrapper: errorWrapper)
+                .presentationDetents([.fraction(0.25)])
+        }
     }
     
     private func login() async {
@@ -45,12 +58,13 @@ struct LoginScreen: View {
             let loginResponseDTO = try await groceryVM.login(username: username, password: password)
             if loginResponseDTO.error {
                 errorMessage = loginResponseDTO.reason ?? ""
+                appState.errorWrapper = ErrorWrapper(error: GroceryError.login, guidance: loginResponseDTO.reason ?? "")
             } else {
                 appState.routes.append(.groceryCategoryList)
             }
         } catch {
             print(error)
-            self.errorMessage = error.localizedDescription
+            appState.errorWrapper = ErrorWrapper(error: error, guidance: error.localizedDescription)
         }
     }
 }

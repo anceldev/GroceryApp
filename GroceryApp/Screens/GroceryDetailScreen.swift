@@ -19,7 +19,10 @@ struct GroceryDetailScreen: View {
             if groceryVM.groceryItems.isEmpty {
                 Text("No items found...")
             } else {
-                GroceryItemListView(groceryItems: groceryVM.groceryItems)
+                GroceryItemListView(
+                    groceryItems: groceryVM.groceryItems,
+                    onDelete: deleteGroceryItem
+                )
             }
         }
         .navigationTitle(groceryCategory.title)
@@ -48,6 +51,16 @@ struct GroceryDetailScreen: View {
             try await groceryVM.populateGroceryItemsBy(groceryCategoryId: groceryCategory.id)
         } catch {
             print(error.localizedDescription)
+        }
+    }
+    
+    private func deleteGroceryItem(groceryItemId: UUID) {
+        Task {
+            do {
+                try await groceryVM.deleteGroceryItem(groceryCategoryId: groceryCategory.id, groceryItemId: groceryItemId)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 }
